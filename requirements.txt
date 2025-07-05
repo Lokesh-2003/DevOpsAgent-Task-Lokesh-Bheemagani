@@ -1,0 +1,4 @@
+prometheus-api-client
+openai
+slack_sdk
+python-dotenv
