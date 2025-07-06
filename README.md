@@ -11,3 +11,7 @@ A smart infrastructure monitoring agent that uses:
 1. Clone this repo:
 ```bash
 git clone https://github.com/Lokesh-2003/DevOpsAgent-Task-Lokesh-Bheemagani.git
+pip install -r requirements.txt
+SLACK_BOT_TOKEN=your-bot-token
+CPU_THRESHOLD=80
+python3 main.py
