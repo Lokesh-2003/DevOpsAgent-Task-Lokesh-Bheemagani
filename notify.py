@@ -1,12 +1,16 @@
-from slack_sdk import WebClient
 import os
-from dotenv import load_dotenv
+from slack_sdk import WebClient
+from slack_sdk.errors import SlackApiError
 
-load_dotenv()
-client = WebClient(token=os.getenv("SLACK_TOKEN"))
+SLACK_TOKEN = os.getenv("SLACK_BOT_TOKEN")
+client = WebClient(token=SLACK_TOKEN)
 
 def send_alert(message):
     try:
-        client.chat_postMessage(channel=os.getenv("SLACK_CHANNEL"), text=message)
-    except Exception as e:
+        response = client.chat_postMessage(
+            channel="#general",  # change if needed
+            text=message
+        )
+        print("Slack alert sent.")
+    except SlackApiError as e:
         print(f"Error sending Slack alert: {e}")
