@@ -1,16 +1,24 @@
 import os
-from slack_sdk import WebClient
-from slack_sdk.errors import SlackApiError
+import requests
 
-SLACK_TOKEN = os.getenv("SLACK_BOT_TOKEN")
-client = WebClient(token=SLACK_TOKEN)
+def send_slack_alert(message):
+    slack_token = os.getenv('SLACK_BOT_TOKEN')
+    slack_channel = "#general"  # or use os.getenv("SLACK_CHANNEL")
 
-def send_alert(message):
-    try:
-        response = client.chat_postMessage(
-            channel="#general",  # change if needed
-            text=message
-        )
-        print("Slack alert sent.")
-    except SlackApiError as e:
-        print(f"Error sending Slack alert: {e}")
+    url = "https://slack.com/api/chat.postMessage"
+    headers = {
+        "Authorization": f"Bearer {slack_token}",
+        "Content-type": "application/json; charset=utf-8"
+    }
+
+    payload = {
+        "channel": slack_channel,
+        "text": message
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+
+    if not response.ok or not response.json().get("ok"):
+        print("Error sending Slack alert:", response.json())
+    else:
+        print("✅ Slack alert sent successfully!")
