@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Constants
-PROMETHEUS_URL = "http://localhost:9100/api/v1/query"
+PROMETHEUS_URL = "http://localhost:9090/api/v1/query"
 SLACK_TOKEN = os.getenv("SLACK_BOT_TOKEN")
 SLACK_CHANNEL = "#general"
 CPU_THRESHOLD = float(os.getenv("CPU_THRESHOLD", 80))  # Default is 80%
