@@ -2,7 +2,7 @@ from monitor import check_cpu_spike
 from logs import get_recent_logs
 from analyze import analyze_logs
 from remediate import restart_container
-from notify import send_alert
+from notify import send_slack_alert
 
 
 def main():
