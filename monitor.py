@@ -1,7 +1,8 @@
 from prometheus_api_client import PrometheusConnect
 import datetime
 
-prom = PrometheusConnect(url="http://localhost:9090", disable_ssl=True)
+prom = PrometheusConnect(url="http://13.203.210.83:9100", disable_ssl=True)
+
 
 def check_cpu_spike(threshold=80.0):
     query = '100 - (avg by(instance)(irate(node_cpu_seconds_total{mode="idle"}[2m])) * 100)'
